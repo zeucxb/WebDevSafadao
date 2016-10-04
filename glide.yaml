@@ -1,0 +1,4 @@
+package: WebDevSafadao
+import:
+- package: github.com/gopherjs/jquery
+- package: honnef.co/go/js/dom
