@@ -11,6 +11,7 @@ import (
 	"github.com/gopherjs/jquery"
 )
 
+// GithubResponse - represents the github response
 type GithubResponse []struct {
 	ID       int    `json:"id"`
 	Name     string `json:"name"`
@@ -122,23 +123,27 @@ func main() {
 }
 
 func safadaoName(githubResponse GithubResponse) {
-	languages := make(map[string]int)
+	if len(githubResponse) > 0 {
+		languages := make(map[string]int)
 
-	for _, repo := range githubResponse {
-		languages[repo.Language]++
-	}
-
-	var theLang string
-	theQtd := 0
-
-	for language, qtd := range languages {
-		if qtd > theQtd {
-			theQtd = qtd
-			theLang = language
+		for _, repo := range githubResponse {
+			languages[repo.Language]++
 		}
+
+		var theLang string
+		theQtd := 0
+
+		for language, qtd := range languages {
+			if qtd > theQtd {
+				theQtd = qtd
+				theLang = language
+			}
+		}
+
+		safadaoName := fmt.Sprintf("Seu nome dev safadão é: %s safadão do %s", githubResponse[0].Owner.Login, theLang)
+
+		dom.GetWindow().Alert(safadaoName)
+	} else {
+		dom.GetWindow().Alert("Desculpe. Você não é um dev safadão.")
 	}
-
-	safadaoName := fmt.Sprintf("Seu nome dev safadão é: %s safadão do %s", githubResponse[0].Owner.Login, theLang)
-
-	dom.GetWindow().Alert(safadaoName)
 }
