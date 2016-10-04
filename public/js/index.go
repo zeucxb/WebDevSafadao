@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"sync"
 	"time"
 
 	"honnef.co/go/js/dom"
@@ -103,12 +102,9 @@ type GithubResponse []struct {
 
 var jQuery = jquery.NewJQuery
 var githubResponse GithubResponse
-var wg sync.WaitGroup
 
 func main() {
 	jQuery("#btn").On(jquery.CLICK, func() {
-		wg.Add(1)
-
 		username := jQuery("#username").Val()
 
 		go func() {
@@ -120,12 +116,12 @@ func main() {
 
 			json.NewDecoder(resp.Body).Decode(&githubResponse)
 
-			wg.Done()
+			safadaoName(githubResponse)
 		}()
 	})
+}
 
-	wg.Wait()
-
+func safadaoName(githubResponse GithubResponse) {
 	languages := make(map[string]int)
 
 	for _, repo := range githubResponse {
