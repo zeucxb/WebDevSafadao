@@ -106,9 +106,9 @@ var githubResponse GithubResponse
 var wg sync.WaitGroup
 
 func main() {
-	wg.Add(1)
-
 	jQuery("#btn").On(jquery.CLICK, func() {
+		wg.Add(1)
+
 		username := jQuery("#username").Val()
 
 		go func() {
