@@ -108,6 +108,11 @@ func main() {
 	jQuery("#btn").On(jquery.CLICK, func() {
 		username := jQuery("#username").Val()
 
+		if username == "" {
+			dom.GetWindow().Alert("Insira um username.")
+			return
+		}
+
 		go func() {
 			resp, err := http.Get("https://api.github.com/users/" + username + "/repos")
 			if err != nil {
