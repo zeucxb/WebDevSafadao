@@ -3,10 +3,13 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
 )
 
 func main() {
-	fs := http.FileServer(http.Dir("public/"))
+	var home = os.Getenv("HOME")
+
+	fs := http.FileServer(http.Dir(home + "/public/"))
 	http.Handle("/", fs)
 
 	log.Println("Listening...")
