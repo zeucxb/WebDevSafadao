@@ -1,0 +1,19 @@
+body {
+    background-color: #333;
+}
+
+input {
+    width: 100%;
+    padding: 3px;
+}
+
+h3 {
+    text-align: center;
+    color: #FFF;
+}
+
+#btn {
+    width: 50%;
+    margin-left: 25%;
+    padding: 10px;
+}
