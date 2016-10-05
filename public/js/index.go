@@ -132,7 +132,9 @@ func safadaoName(githubResponse GithubResponse) {
 		languages := make(map[string]int)
 
 		for _, repo := range githubResponse {
-			languages[repo.Language]++
+			if repo.Language != "" {
+				languages[repo.Language]++
+			}
 		}
 
 		var theLang string
