@@ -7,7 +7,7 @@ html {
 }
 
 body {
-  background-color: #efefef;
+  background-color: #F1F1F1;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -27,6 +27,8 @@ body {
   font-size: 22px;
   margin: 0 0 20px 0;
   padding: 0;
+  width: 100%;
+  text-align: center;
 }
 
 .input {
@@ -54,4 +56,12 @@ body {
   width: 100%;
   text-align: center;
   margin-top: 10px;
+}
+
+.image {
+  width: 300px;
+}
+
+.hide {
+  display: none;
 }

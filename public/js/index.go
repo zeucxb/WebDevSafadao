@@ -106,6 +106,8 @@ var githubResponse GithubResponse
 
 func main() {
 	jQuery("#btn").On(jquery.CLICK, func() {
+		jQuery("#output").SetText("")
+		jQuery("#img").RemoveClass("hide")
 		username := jQuery("#username").Val()
 
 		if username == "" {
@@ -147,9 +149,10 @@ func safadaoName(githubResponse GithubResponse) {
 			}
 		}
 
-		safadaoName := fmt.Sprintf("Seu nome dev safadão é: %s safadão do %s", githubResponse[0].Owner.Login, theLang)
+		safadaoName := fmt.Sprintf("Seu nome dev safadão é: %s safadão do %s.", githubResponse[0].Owner.Login, theLang)
 
-		dom.GetWindow().Alert(safadaoName)
+		jQuery("#img").AddClass("hide")
+		jQuery("#output").SetText(safadaoName)
 	} else {
 		dom.GetWindow().Alert("Desculpe. Você não é um dev safadão.")
 	}
